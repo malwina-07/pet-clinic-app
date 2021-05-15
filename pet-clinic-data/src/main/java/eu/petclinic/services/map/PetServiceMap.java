@@ -1,7 +1,8 @@
 package eu.petclinic.services.map;
 
 import eu.petclinic.model.Pet;
-import eu.petclinic.services.CrudService;
+import eu.petclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -9,7 +10,8 @@ import java.util.Set;
  * @project pet-clinic-app
  * Created by @author malwina.k on 14.05.2021
  */
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+@Service
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
     @Override
     public Pet findById(Long id) {
         return super.findById(id);
