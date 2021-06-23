@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by @author malwina.k on 14.05.2021
  */
 @Service
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
+public class PetMapService extends AbstractMapService<Pet, Long> implements PetService {
     @Override
     public Pet findById(Long id) {
         return super.findById(id);
