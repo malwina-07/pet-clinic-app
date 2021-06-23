@@ -1,10 +1,7 @@
 package eu.petclinic.bootstrap;
 
 import eu.petclinic.model.*;
-import eu.petclinic.services.OwnerService;
-import eu.petclinic.services.PetTypeService;
-import eu.petclinic.services.SpecialtiesService;
-import eu.petclinic.services.VetService;
+import eu.petclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
@@ -20,14 +17,16 @@ public class DataInitializer implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtiesService specialtiesService;
+    private final VisitService visitService;
 
 
     public DataInitializer(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
-                           SpecialtiesService specialtiesService) {
+                           SpecialtiesService specialtiesService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtiesService = specialtiesService;
+        this.visitService = visitService;
     }
 
 
@@ -95,6 +94,13 @@ public class DataInitializer implements CommandLineRunner {
         owner2.getPets().add(fionasCat);
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(fionasCat);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Kitty");
+
+        visitService.save(catVisit);
 
 
         System.out.println("Loaded Owners....");
