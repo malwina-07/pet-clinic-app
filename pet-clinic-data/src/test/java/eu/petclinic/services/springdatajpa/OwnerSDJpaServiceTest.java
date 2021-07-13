@@ -77,6 +77,14 @@ class OwnerSDJpaServiceTest {
 
         assertNotNull(owner);
     }
+    @Test
+    void findByIdNotFound() {
+        when(ownerRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+        Owner owner = service.findById(1L);
+
+        assertNull(owner);
+    }
 
     @Test
     void save() {
